@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="../Hackathon/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text"  name="txt" placeholder="User name" required="">
+					<input type="email"  name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					
+                    <button type="submit"><a href="../Hackathon/profile.html">Sign up</a></button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email"  required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button type="submit"><a href="../Hackathon/profile.html">Login</a></button>
+				</form>
+			</div>
+	</div>
+	
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqr7SbWTPzHdGxU0F4qUeXtbhyCzRnaQI",
+  authDomain: "abcdf-6a9b4.firebaseapp.com",
+  projectId: "abcdf-6a9b4",
+  storageBucket: "abcdf-6a9b4.appspot.com",
+  messagingSenderId: "781156926289",
+  appId: "1:781156926289:web:00d8a2a8d7fef6a359c970",
+  measurementId: "G-ELK7DRG7FR",
+    databaseURL: "https://abcdf-6a9b4-default-rtdb.firebaseio.com/"
+       };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        document.getElementById("submit").addEventListener('click', () => {
+            
+			// Get values
+			var name = getInputVal('name');
+			var email = getInputVal('email');
+
+			saveMessage(name, email);
+	
+            var userRef = firebase.database().ref('user');
+            userRef.set({
+				name: name,
+				email: email,
+            })
+        })
+
+    </script>
+ 	</body>
+</html>
